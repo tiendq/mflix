@@ -18,13 +18,14 @@ describe("MongoClient", () => {
     try {
       testClient = await MongoClient.connect(process.env.MFLIX_DB_URI, {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       })
       expect(testClient).not.toBeNull()
 
       // retrieve client options
       const clientOptions = testClient.s.options
       // console.error("OPTS", clientOptions)
-      expect(clientOptions).not.toBeUndefined()
+      expect(clientOptions).toBeDefined()
 
       // expect this connection to have SSL enabled
       if (typeof clientOptions.ssl !== "undefined") {
@@ -55,6 +56,7 @@ describe("MongoClient", () => {
         connectTimeoutMS: 200,
         retryWrites: true,
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       })
 
       const clientOptions = testClient.s.options
@@ -63,6 +65,7 @@ describe("MongoClient", () => {
       expect(clientOptions.connectTimeoutMS).toBe(200)
       expect(clientOptions.retryWrites).toBe(true)
       expect(clientOptions.useNewUrlParser).toBe(true)
+      expect(clientOptions.useUnifiedTopology).toBe(true)
     } catch (e) {
       expect(e).toBeNull()
     } finally {
@@ -84,6 +87,7 @@ describe("MongoClient", () => {
     try {
       testClient = await MongoClient.connect(process.env.MFLIX_DB_URI, {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       })
 
       // create a database object for the "mflix" database
@@ -122,6 +126,7 @@ describe("MongoClient", () => {
         connectTimeoutMS: 200,
         retryWrites: true,
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       })
 
       // create a database object for the "mflix" database
