@@ -11,6 +11,8 @@ module.exports = class MongoEnvironment extends NodeEnvironment {
         // TODO: Timeouts
         // Set the write timeout limit to 2500 milliseconds for the testing environment.
         {
+          poolSize: 50,
+          wtimeout: 2500,
           useNewUrlParser: true,
           useUnifiedTopology: true,
         },
