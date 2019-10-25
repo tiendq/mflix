@@ -1,0 +1,27 @@
+version: "2.4"
+services:
+  elasticsearch01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
+    container_name: elasticsearch01
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - node.name=elasticsearch01
+      - discovery.type=single-node
+    networks:
+      - esnet01
+  kibana01:
+    image: docker.elastic.co/kibana/kibana:7.4.0
+    container_name: kibana01
+    depends_on:
+      - elasticsearch01
+    ports:
+      - 5601:5601
+    environment:
+      - SERVER_NAME=kibana01
+      - ELASTICSEARCH_HOSTS=http://elasticsearch01:9200
+    networks:
+      - esnet01
+networks:
+  esnet01:
