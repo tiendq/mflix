@@ -1,8 +1,6 @@
 const { MongoClient, ObjectId, MongoError } = require("mongodb")
 
 /**
- * Ticket: Migration
- *
  * Update all the documents in the `movies` collection, such that the
  * "lastupdated" field is stored as an ISODate() rather than a string.
  *
@@ -19,7 +17,6 @@ const { MongoClient, ObjectId, MongoError } = require("mongodb")
     const client = await MongoClient.connect(host, { useNewUrlParser: true })
     const mflix = client.db("sample_mflix")
 
-    // TODO: Create the proper predicate and projection
     // add a predicate that checks that the `lastupdated` field exists, and then
     // check that its type is a string
     // a projection is not required, but may help reduce the amount of data sent
@@ -47,7 +44,6 @@ const { MongoClient, ObjectId, MongoError } = require("mongodb")
       `Found ${moviesToMigrate.length} documents to update`,
     )
 
-    // TODO: Complete the BulkWrite statement below
     const { modifiedCount } = await mflix
       .collection("movies")
       .bulkWrite(moviesToMigrate)
