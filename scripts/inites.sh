@@ -48,3 +48,26 @@ curl -X PUT http://localhost:9200/mflix_movies/_mapping -H 'Content-Type: applic
     }
   }
 }'
+
+curl -X PUT http://localhost:9200/mflix_comments
+
+curl -X PUT http://localhost:9200/mflix_comments/_mapping -H 'Content-Type: application/json' -d \
+'{
+  "properties": {
+    "name": {
+      "type": "text"
+    },
+    "email": {
+      "type": "text"
+    },
+    "movie_id": {
+      "type": "keyword"
+    },
+    "date": {
+      "type": "date"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}'
